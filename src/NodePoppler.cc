@@ -297,6 +297,7 @@ QBuffer *writePdfFields(const struct WriteFieldsParams &params) {
         idSS.str("");
         idSS.clear();
       }
+      field->setReadOnly(false);
       if (!field->isReadOnly() && field->isVisible() && params.fields.count(fieldName) ) {
         // Text
         if (field->type() == Poppler::FormField::FormText) {
@@ -348,6 +349,8 @@ QBuffer *writePdfFields(const struct WriteFieldsParams &params) {
           }
         }
       }
+
+      field->setReadOnly(true);
     }
 
     qDeleteAll(formFields);
